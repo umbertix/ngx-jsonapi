@@ -9,6 +9,7 @@ import { IDataObject } from './interfaces/data-object';
 
 import { isFunction } from 'rxjs/util/isFunction';
 import { isArray } from 'rxjs/util/isArray';
+import { isObject } from 'rxjs/util/isObject';
 
 import {
     IAttributes,
@@ -222,7 +223,7 @@ export class Resource extends ParentResourceService {
                         }
 
                         // is a resource?
-                        if ('id' in success.data) {
+                        if (isObject(success) && 'id' in success.data) {
                             this.id = success.data.id;
                             Converter.build(success, this);
                             /*
